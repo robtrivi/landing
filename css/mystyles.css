@@ -32,3 +32,12 @@
     transform: translate(+20%, +20%);
     z-index: -1;
 }
+#particles-js{
+    position: absolute;
+    background: #000000;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}

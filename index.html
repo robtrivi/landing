@@ -28,9 +28,10 @@
 
 <body>
 	<!-- Start Header/Navigation -->
+
 	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Furni<span>.</span></a>
+			<a class="navbar-brand" href="index.html">CMCEC<span></span></a>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
 				aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +56,8 @@
 	<!-- End Header/Navigation -->
 
 	<!-- Start Hero Section -->
-	<div class="hero">
+	<div id="particles-js"></div>
+	<section class="hero mt-5">
 		<div class="container">
 			<div class="row justify-content-between">
 				<div class="col-lg-7">
@@ -81,11 +83,12 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
+	<!-- </div> -->
 	<!-- End Hero Section -->
 
 	<!-- Start Product Section -->
-	<div id="product-section" class="product-section mt-5 mb-5">
+	<section id="product-section" class="product-section mt-5 mb-5">
 		<div class="container">
 			<div class="row">
 				<!-- Start Column 1 -->
@@ -154,7 +157,7 @@
 	<!-- End Product Section -->
 
 	<!-- Start Cursos Section -->
-	<section id="cursos-section">
+	<section id="cursos-section" class="mt-5">
 		<div class="container">
 			<div class="row mb-5 justify-content-between">
 
@@ -225,10 +228,9 @@
 	<!-- End Cursos Section -->
 	<!-- Start Team -->
 
-	<section id="nuestro-equipo">
-		<div class="container">
+	<section id="team" class="container mt-5">
 			<h2 class="text-center mb-5">Nuestro Equipo</h2>
-			<div class="row justify-content-center">
+			<div class="row justify-content-between ps-5 pe-5">
 				<!-- Team Member 1 -->
 				<div class="col-lg-2 col-md-3 col-sm-6 mb-4 text-center">
 					<div class="team-member">
@@ -275,21 +277,20 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 
 	<!-- End Team -->
 
-	<section id="team" class="container mt-5">
-        <h2>Formulario de Calificación de Cursos</h2>
+	<section id="calfificaciones" class="container mt-5">
+        <h2 class="section-title">Formulario de Calificación de Cursos</h2>
         <form id="calificacionForm" class="needs-validation" novalidate>
             <div class="mb-3">
                 <label for="curso" class="form-label">Seleccionar Curso</label>
                 <select class="form-select" id="curso" required>
                     <option value="">Seleccione un curso...</option>
-                    <option value="curso1">Curso 1</option>
-                    <option value="curso2">Curso 2</option>
-                    <option value="curso3">Curso 3</option>
+                    <option value="curso1">Introducción a la Programación</option>
+                    <option value="curso2">Desarrollo Web Avanzado</option>
+                    <option value="curso3">Machine Learning y AI</option>
                 </select>
                 <div class="invalid-feedback">
                     Por favor, seleccione un curso.
@@ -297,21 +298,21 @@
             </div>
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" required>
+                <input type="text" class="form-control" id="nombre" placeholder="Robespierre Triviño" required>
                 <div class="invalid-feedback">
                     Por favor, ingrese su nombre.
                 </div>
             </div>
             <div class="mb-3">
                 <label for="calificacion" class="form-label">Calificación (1-5)</label>
-                <input type="number" class="form-control" id="calificacion" min="1" max="5" required>
+                <input type="number" class="form-control" id="calificacion" min="1" max="5" placeholder="5" required>
                 <div class="invalid-feedback">
                     Por favor, ingrese una calificación entre 1 y 5.
                 </div>
             </div>
             <div class="mb-3">
                 <label for="resena" class="form-label">Reseña</label>
-                <textarea class="form-control" id="resena" rows="3" required></textarea>
+                <textarea class="form-control" id="resena" rows="3" placeholder="El curso me ha servido...(minimo 10 palabras)" required></textarea>
                 <div class="invalid-feedback">
                     Por favor, ingrese su reseña.
                 </div>
@@ -443,6 +444,9 @@
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/tiny-slider.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/particles.min.js"></script>
+	<script src="js/main.js" defer></script>
+
 </body>
 
 </html>
