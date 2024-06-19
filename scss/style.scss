@@ -12,7 +12,7 @@
 $white: #ffffff;
 $black: #000000;
 $primary: #342a45;
-$secondary: #6c35de;
+$secondary: #2d0e69;
 $dark: #2f2f2f;
 $light: #dce5e4;
 $lighter: #eff2f1;
@@ -35,7 +35,7 @@ body {
 	font-weight: 400;
 	line-height: 28px;
 	color: $body_color;
-	font-size: 14px;
+	font-size: 16px;
 	background-color: $lighter;
 }
 
@@ -225,7 +225,7 @@ a {
 		}
 	}
 	&.btn-secondary {
-		color: $dark;
+		color: $white;
 		background: $secondary;
 		border-color: $secondary;
 		&:hover {
@@ -246,7 +246,8 @@ a {
 
 // Product Section
 .section-title {
-	color: $dark;
+	color: $secondary;
+	font-weight: bold;
 }
 .product-section {
 	padding: 7rem 0;

@@ -15,7 +15,7 @@ body {
   font-weight: 400;
   line-height: 28px;
   color: #6a6a6a;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #eff2f1;
 }
 
@@ -72,7 +72,7 @@ a.more {
     bottom: 0;
     left: 8px;
     right: 8px;
-    background: #6c35de;
+    background: #2d0e69;
     height: 5px;
     opacity: 1;
     visibility: visible;
@@ -208,13 +208,13 @@ a.more {
   border-color: #282035;
 }
 .btn.btn-secondary {
-  color: #2f2f2f;
-  background: #6c35de;
-  border-color: #6c35de;
+  color: #ffffff;
+  background: #2d0e69;
+  border-color: #2d0e69;
 }
 .btn.btn-secondary:hover {
-  background: #5d23d6;
-  border-color: #5d23d6;
+  background: #230b53;
+  border-color: #230b53;
 }
 .btn.btn-white-outline {
   background: transparent;
@@ -227,7 +227,8 @@ a.more {
 }
 
 .section-title {
-  color: #2f2f2f;
+  color: #2d0e69;
+  font-weight: bold;
 }
 
 .product-section {
