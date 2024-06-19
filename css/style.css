@@ -223,6 +223,7 @@ a {
       color: #2f2f2f;
       text-decoration: none; }
     .product-section .product-item .icon-cross {
+      fill: #eff2f1;
       position: absolute;
       width: 35px;
       height: 35px;
