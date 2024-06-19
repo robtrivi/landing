@@ -280,45 +280,73 @@
 	</section>
 
 	<!-- End Team -->
-
+	
 	<section id="calfificaciones" class="container mt-5">
-        <h2 class="section-title">Formulario de Calificación de Cursos</h2>
-        <form id="calificacionForm" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="curso" class="form-label">Seleccionar Curso</label>
-                <select class="form-select" id="curso" required>
-                    <option value="">Seleccione un curso...</option>
-                    <option value="curso1">Introducción a la Programación</option>
-                    <option value="curso2">Desarrollo Web Avanzado</option>
-                    <option value="curso3">Machine Learning y AI</option>
-                </select>
-                <div class="invalid-feedback">
-                    Por favor, seleccione un curso.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Robespierre Triviño" required>
-                <div class="invalid-feedback">
-                    Por favor, ingrese su nombre.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="calificacion" class="form-label">Calificación (1-5)</label>
-                <input type="number" class="form-control" id="calificacion" min="1" max="5" placeholder="5" required>
-                <div class="invalid-feedback">
-                    Por favor, ingrese una calificación entre 1 y 5.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="resena" class="form-label">Reseña</label>
-                <textarea class="form-control" id="resena" rows="3" placeholder="El curso me ha servido...(minimo 10 palabras)" required></textarea>
-                <div class="invalid-feedback">
-                    Por favor, ingrese su reseña.
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
+        <div class="row">
+            <section id="envio-calificaciones" class="col-12 col-md-6">
+                <h2 class="section-title">Formulario de Calificación de Cursos</h2>
+                <form id="calificacionForm" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="curso" class="form-label">Seleccionar Curso</label>
+                        <select class="form-select" id="curso" required>
+                            <option value="">Seleccione un curso...</option>
+                            <option value="Introducción a la Programación">Introducción a la Programación</option>
+                            <option value="Desarrollo Web Avanzado">Desarrollo Web Avanzado</option>
+                            <option value="Machine Learning y AI">Machine Learning y AI</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Por favor, seleccione un curso.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Robespierre Triviño" required>
+                        <div class="invalid-feedback">
+                            Por favor, ingrese su nombre.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="calificacion" class="form-label">Calificación (1-5)</label>
+                        <input type="number" class="form-control" id="calificacion" min="1" max="5" placeholder="5" required>
+                        <div class="invalid-feedback">
+                            Por favor, ingrese una calificación entre 1 y 5.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="resena" class="form-label">Reseña</label>
+                        <textarea class="form-control" id="resena" rows="3" placeholder="El curso me ha servido...(minimo 10 palabras)" required></textarea>
+                        <div class="invalid-feedback">
+                            Por favor, ingrese su reseña.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </section>
+
+            <section id="top" class="col-12 col-md-6">
+                <h3>Top 3 Cursos</h3>
+                <table class="table" id="topCursosTable">
+                    <thead>
+                        <tr>
+                            <th>Curso</th>
+                            <th>Promedio de Calificación</th>
+                        </tr>
+                    </thead>
+                    <tbody id="topCursosBody">
+                        <!-- Contenido dinámico -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </section>
+
+	<section id="resenias" class="container mt-5 mb-5">
+		<div class="col-12">
+			<h2 class="section-title">Lo que opinan de nosotros</h2>
+			<div id="resenasAleatorias" class="reseñas-container">
+				<!-- Contenido dinámico -->
+			</div>
+		</div>
 	</section>
 
 	<!-- Start Why Choose Us Section -->

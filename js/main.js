@@ -1,3 +1,5 @@
+const firebaseURL = 'https://prueba-espol-default-rtdb.firebaseio.com/collection.json';
+
 particlesJS.load('particles-js', 'assets/particles.json', function() {
     console.log('callback - particles.js config loaded');
   });
@@ -6,6 +8,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('calificacionForm');
     form.addEventListener('submit', handleSubmit, false);
+    obtenerDatosDeFirebase(firebaseURL);
 });
 
 function handleSubmit(event) {
@@ -39,12 +42,11 @@ function handleSubmit(event) {
         form.classList.add('was-validated');
     } else {
         form.classList.remove('was-validated');
-        alert('Formulario enviado con éxito.');
-        // Aquí puedes agregar el código para enviar el formulario
+        enviarDatosAFirebase(firebaseURL);
     }
 }
 
-function enviarDatosAFirebase() {
+function enviarDatosAFirebase(firebaseURL) {
     const curso = document.getElementById('curso').value;
     const nombre = document.getElementById('nombre').value;
     const calificacion = document.getElementById('calificacion').value;
@@ -57,7 +59,7 @@ function enviarDatosAFirebase() {
         resena
     };
 
-    fetch('https://prueba-espol-default-rtdb.firebaseio.com/collection.json', {
+    fetch(firebaseURL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -67,10 +69,85 @@ function enviarDatosAFirebase() {
     .then(response => response.json())
     .then(data => {
         console.log('Éxito:', data);
-        alert('Formulario enviado con éxito.');
+        console.log('Formulario enviado con éxito.');
     })
     .catch((error) => {
         console.error('Error:', error);
         alert('Hubo un problema al enviar el formulario.');
     });
+}
+
+function obtenerDatosDeFirebase() {
+    fetch(firebaseURL)
+        .then(response => response.json())
+        .then(data => {
+            procesarDatos(data);
+        })
+        .catch(error => console.error('Error al obtener datos:', error));
+}
+
+function procesarDatos(data) {
+    const cursos = {};
+    console.log('Datos obtenidos:', typeof data);
+    data.forEach(item => {
+        if (!cursos[item.curso]) {
+            cursos[item.curso] = {
+                totalCalificaciones: 0,
+                conteoCalificaciones: 0
+            };
+        }
+        cursos[item.curso].totalCalificaciones += parseInt(item.calificacion, 10);
+        cursos[item.curso].conteoCalificaciones += 1;
+    });
+
+    const promedios = Object.keys(cursos).map(curso => {
+        return {
+            curso,
+            promedio: (cursos[curso].totalCalificaciones / cursos[curso].conteoCalificaciones).toFixed(2)
+        };
+    });
+
+    promedios.sort((a, b) => b.promedio - a.promedio);
+
+    actualizarTablaTopCursos(promedios.slice(0, 3));
+}
+
+function actualizarTablaTopCursos(topCursos) {
+    const topCursosBody = document.getElementById('topCursosBody');
+    topCursosBody.innerHTML = '';
+
+    topCursos.forEach(curso => {
+        const template = `
+            <tr>
+                <td>${curso.curso}</td>
+                <td>${curso.promedio}</td>
+            </tr>
+        `;
+        topCursosBody.insertAdjacentHTML('beforeend', template);
+    });
+}
+
+function mostrarResenaAleatoria() {
+    if (reseñas.length === 0) return;
+
+    const resenasAleatorias = document.getElementById('resenasAleatorias');
+    resenasAleatorias.innerHTML = '';
+
+    const reseñaIndex = Math.floor(Math.random() * reseñas.length);
+    const reseña = reseñas[reseñaIndex];
+    const template = `
+        <div class="reseña active">
+            <p>${reseña}</p>
+        </div>
+    `;
+
+    resenasAleatorias.insertAdjacentHTML('beforeend', template);
+
+    setTimeout(() => {
+        const reseñaElement = resenasAleatorias.querySelector('.reseña');
+        reseñaElement.classList.remove('active');
+        setTimeout(() => {
+            mostrarResenaAleatoria();
+        }, 1000); // Esperar a que la transición termine antes de mostrar una nueva reseña
+    }, 10000); // Cambiar reseña cada 10 segundos
 }
