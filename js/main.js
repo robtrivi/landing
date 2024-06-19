@@ -1,5 +1,7 @@
 const firebaseURL = 'https://prueba-espol-default-rtdb.firebaseio.com/collection.json';
 
+var resenias = []
+
 particlesJS.load('particles-js', 'assets/particles.json', function() {
     console.log('callback - particles.js config loaded');
   });
@@ -82,14 +84,16 @@ function obtenerDatosDeFirebase() {
         .then(response => response.json())
         .then(data => {
             procesarDatos(data);
+            procesarRenias();
         })
         .catch(error => console.error('Error al obtener datos:', error));
 }
 
 function procesarDatos(data) {
     const cursos = {};
-    console.log('Datos obtenidos:', typeof data);
-    data.forEach(item => {
+    const datosArray = Object.values(data);
+
+    datosArray.forEach(item => {
         if (!cursos[item.curso]) {
             cursos[item.curso] = {
                 totalCalificaciones: 0,
@@ -98,6 +102,7 @@ function procesarDatos(data) {
         }
         cursos[item.curso].totalCalificaciones += parseInt(item.calificacion, 10);
         cursos[item.curso].conteoCalificaciones += 1;
+        resenias.push(item)
     });
 
     const promedios = Object.keys(cursos).map(curso => {
@@ -128,13 +133,13 @@ function actualizarTablaTopCursos(topCursos) {
 }
 
 function mostrarResenaAleatoria() {
-    if (reseñas.length === 0) return;
+    if (resenias.length === 0) return;
 
     const resenasAleatorias = document.getElementById('resenasAleatorias');
     resenasAleatorias.innerHTML = '';
 
-    const reseñaIndex = Math.floor(Math.random() * reseñas.length);
-    const reseña = reseñas[reseñaIndex];
+    const reseniaIndex = Math.floor(Math.random() * resenias.length);
+    const reseña = resenias[reseniaIndex];
     const template = `
         <div class="reseña active">
             <p>${reseña}</p>
@@ -149,5 +154,48 @@ function mostrarResenaAleatoria() {
         setTimeout(() => {
             mostrarResenaAleatoria();
         }, 1000); // Esperar a que la transición termine antes de mostrar una nueva reseña
+    }, 2000); // Cambiar reseña cada 10 segundos
+}
+
+function procesarRenias(){
+    if (!resenias || resenias.length === 0) return;
+
+    const resenasAleatorias = document.getElementById('resenasAleatorias');
+    resenasAleatorias.innerHTML = '';
+
+    const reseniaIndex = Math.floor(Math.random() * resenias.length);
+    const reseniaData = resenias[reseniaIndex];
+    const template = `
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-12 mt-5 text-center">
+                <h3>${reseniaData.nombre}</h3>
+                <h4>${reseniaData.curso}</h4>
+                <div>${generarEstrellas(reseniaData.calificacion)}</div>
+                <p>${reseniaData.resena}</p>
+            </div>
+        </div>
+    `;
+
+    resenasAleatorias.insertAdjacentHTML('beforeend', template);
+
+    setTimeout(() => {
+        setTimeout(() => {
+            procesarRenias();
+        }, 1000); // Esperar a que la transición termine antes de mostrar una nueva reseña
     }, 10000); // Cambiar reseña cada 10 segundos
+}
+
+function generarEstrellas(calificacion) {
+    const estrellasMaximas = 5;
+    let estrellas = '';
+
+    for (let i = 1; i <= estrellasMaximas; i++) {
+        if (i <= calificacion) {
+            estrellas += '<i class="bi bi-star-fill text-warning"></i>'; // Estrella llena
+        } else {
+            estrellas += '<i class="bi bi-star text-warning"></i>'; // Estrella vacía
+        }
+    }
+
+    return estrellas;
 }
