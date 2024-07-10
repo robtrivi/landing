@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('calificacionForm');
     form.addEventListener('submit', handleSubmit, false);
     obtenerDatosDeFirebase(firebaseURL);
+    console.log("Se ha actualizado")
 });
 
 function handleSubmit(event) {
@@ -70,8 +71,9 @@ function enviarDatosAFirebase(firebaseURL) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Éxito:', data);
-        console.log('Formulario enviado con éxito.');
+        limpiarFormulario();
+        mostrarPopup();
+        actualizarPagina();
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -198,4 +200,16 @@ function generarEstrellas(calificacion) {
     }
 
     return estrellas;
+}
+
+function limpiarFormulario() {
+    document.getElementById('calificacionForm').reset();
+}
+
+function mostrarPopup() {
+    alert('Formulario enviado con éxito.');
+}
+
+function actualizarPagina() {
+    location.reload();
 }
