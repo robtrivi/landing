@@ -213,3 +213,22 @@ function mostrarPopup() {
 function actualizarPagina() {
     location.reload();
 }
+
+function updateImages() {
+    const images = document.querySelectorAll('.responsive-img');
+    const windowWidth = window.innerWidth;
+
+    images.forEach((img, index) => {
+        const largeSrc = `images/img-grid-${index + 1}.jpg`;
+        const smallSrc = `images/img-grid-${index + 1}-small.jpg`;
+
+        if (windowWidth <= 768) {
+            img.src = smallSrc;
+        } else {
+            img.src = largeSrc;
+        }
+    });
+}
+
+updateImages();
+window.addEventListener('resize', updateImages);
