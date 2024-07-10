@@ -170,7 +170,7 @@ function procesarRenias(){
             <div class="col-lg-6 col-12 mt-5 text-center">
                 <h3>${reseniaData.nombre}</h3>
                 <h4>${reseniaData.curso}</h4>
-                <div>${generarEstrellas(reseniaData.calificacion)}</div>
+                <div class = "estrellas">${generarEstrellas(reseniaData.calificacion)}</div>
                 <p>${reseniaData.resena}</p>
             </div>
         </div>

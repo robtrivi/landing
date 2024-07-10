@@ -41,3 +41,14 @@
     left: 0;
     z-index: -1;
 }
+
+.product-item > img {
+    /* max-width: 150px; */
+    max-height: 150px;
+}
+
+#resenasAleatorias .estrellas{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
